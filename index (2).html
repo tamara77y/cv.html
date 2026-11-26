@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deswita Ayudya Pitaloka — Portofolio Kuliner & CV Klasik</title>
+    
+    <!-- Google Fonts: Cormorant Garamond, Playfair Display & Lora (Tipografi Literatur & Menu Klasik) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        parchment: {
+                            DEFAULT: '#F5EFE6',
+                            light: '#FAF6F0',
+                            dark: '#E8DEC8',
+                        },
+                        espresso: {
+                            DEFAULT: '#2C1E16',
+                            light: '#4A3527',
+                            muted: '#6B5344',
+                        },
+                        antique: {
+                            gold: '#9E7B4F',
+                            bronze: '#7C5832',
+                            light: '#C5A475',
+                        },
+                        burgundy: {
+                            DEFAULT: '#7A2E2E',
+                            dark: '#591E1E',
+                        }
+                    },
+                    fontFamily: {
+                        display: ['"Playfair Display"', 'serif'],
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        body: ['"Lora"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS untuk Tekstur Kertas Vintage, Bingkai Klasik & Print Mode -->
+    <style>
+        body {
+            background-color: #F5EFE6;
+            color: #2C1E16;
+            font-family: 'Lora', serif;
+            overflow-x: hidden;
+            /* Tekstur kertas perkamen halus menggunakan radial & linear gradient */
+            background-image: 
+                radial-gradient(rgba(158, 123, 79, 0.08) 1px, transparent 0),
+                radial-gradient(rgba(44, 30, 22, 0.04) 1px, transparent 0);
+            background-size: 32px 32px;
+            background-position: 0 0, 16px 16px;
+        }
+
+        /* Navbar Kertas Translucent */
+        .vintage-nav {
+            background: rgba(250, 246, 240, 0.92);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(158, 123, 79, 0.35);
+        }
+
+        /* Bingkai Garis Ganda ala Sertifikat & Menu Restoran Klasik */
+        .double-frame {
+            border: 1px solid #9E7B4F;
+            box-shadow: inset 0 0 0 4px #FAF6F0, inset 0 0 0 5px rgba(158, 123, 79, 0.45);
+        }
+
+        .double-frame-dark {
+            border: 1px solid rgba(197, 164, 117, 0.5);
+            box-shadow: inset 0 0 0 4px #2C1E16, inset 0 0 0 5px rgba(197, 164, 117, 0.3);
+        }
+
+        /* Efek Foto Vintage (Sepia lembut -> Warna hangat penuh saat hover) */
+        .vintage-photo {
+            filter: sepia(18%) contrast(103%) brightness(98%);
+            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .vintage-photo-wrapper:hover .vintage-photo {
+            filter: sepia(0%) contrast(102%) brightness(100%);
+            transform: scale(1.03);
+        }
+
+        /* Kartu Arsip & Menu Vintage */
+        .vintage-card {
+            background-color: #FAF6F0;
+            border: 1px solid rgba(158, 123, 79, 0.35);
+            box-shadow: 0 10px 30px -12px rgba(44, 30, 22, 0.12);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .vintage-card:hover {
+            transform: translateY(-5px);
+            border-color: #7A2E2E;
+            box-shadow: 0 18px 36px -14px rgba(44, 30, 22, 0.2);
+        }
+
+        /* Pemisah Ornamen Klasik */
+        .ornament-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            color: #9E7B4F;
+        }
+        .ornament-divider::before,
+        .ornament-divider::after {
+            content: "";
+            height: 1px;
+            width: 60px;
+            background: linear-gradient(90deg, transparent, #9E7B4F, transparent);
+        }
+
+        /* Animasi Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom Scrollbar Vintage */
+        ::-webkit-scrollbar {
+            width: 9px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F5EFE6;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #9E7B4F;
+            border-radius: 4px;
+            border: 2px solid #F5EFE6;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #7A2E2E;
+        }
+
+        /* Print Friendly Styles (Saat pengguna menekan Cetak / Simpan PDF CV) */
+        @media print {
+            header, .no-print, #toast {
+                display: none !important;
+            }
+            body {
+                background: #FFFFFF !important;
+                color: #000000 !important;
+                font-size: 11pt;
+            }
+            section {
+                padding-top: 1.25rem !important;
+                padding-bottom: 1.25rem !important;
+                page-break-inside: avoid;
+            }
+            .vintage-card, .double-frame {
+                box-shadow: none !important;
+                border: 1px solid #999 !important;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-burgundy selection:text-parchment-light">
+
+    <!-- Notifikasi Toast Vintage (Pengganti alert) -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="bg-espresso text-parchment-light border border-antique-light px-5 py-3.5 rounded-lg shadow-2xl flex items-center gap-3">
+            <i class="fa-solid fa-feather-pointed text-antique-light text-base"></i>
+            <span id="toast-message" class="text-sm font-body">Berhasil disalin ke papan klip!</span>
+        </div>
+    </div>
+
+    <!-- NAVIGASI KLASIK -->
+    <header class="fixed top-0 left-0 right-0 z-40 vintage-nav transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Monogram & Nama -->
+                <a href="#tentang" class="flex items-center gap-3 group">
+                    <div class="w-11 h-11 rounded-full border border-antique-gold flex items-center justify-center bg-parchment group-hover:bg-espresso transition-colors duration-300 shadow-sm">
+                        <span class="font-display font-bold text-lg text-burgundy group-hover:text-antique-light">DA</span>
+                    </div>
+                    <div>
+                        <span class="font-display text-lg sm:text-xl font-bold tracking-wide text-espresso block leading-none">Deswita Ayudya</span>
+                        <span class="font-serif italic text-xs tracking-wider text-antique-bronze">Curriculum Vitae &bull; Kuliner</span>
+                    </div>
+                </a>
+
+                <!-- Menu Desktop -->
+                <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-espresso-light">
+                    <a href="#tentang" class="hover:text-burgundy transition-colors">Tentang Saya</a>
+                    <a href="#visi" class="hover:text-burgundy transition-colors">Cita-Cita</a>
+                    <a href="#keahlian" class="hover:text-burgundy transition-colors">Keahlian Kuliner</a>
+                    <a href="#pendidikan-hobi" class="hover:text-burgundy transition-colors">Pendidikan & Hobi</a>
+                    <a href="#kontak" class="px-5 py-2.5 rounded-md bg-burgundy text-parchment-light font-serif text-base tracking-wide hover:bg-burgundy-dark transition-all shadow-md">
+                        Kontak & Pesan
+                    </a>
+                </nav>
+
+                <!-- Tombol Hamburger Mobile -->
+                <button id="mobile-menu-btn" aria-label="Buka Menu Navigasi" class="md:hidden p-2.5 rounded-md text-espresso hover:text-burgundy border border-antique-gold/40 bg-parchment-light focus:outline-none">
+                    <i class="fa-solid fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Dropdown Menu Mobile -->
+        <div id="mobile-menu" class="hidden md:hidden bg-parchment-light border-b border-antique-gold/40 px-6 py-5 space-y-3 shadow-xl">
+            <a href="#tentang" class="block text-espresso hover:text-burgundy py-1.5 border-b border-antique-gold/15 mobile-link">Tentang Saya</a>
+            <a href="#visi" class="block text-espresso hover:text-burgundy py-1.5 border-b border-antique-gold/15 mobile-link">Cita-Cita Chef Bintang 5</a>
+            <a href="#keahlian" class="block text-espresso hover:text-burgundy py-1.5 border-b border-antique-gold/15 mobile-link">Keahlian Kuliner</a>
+            <a href="#pendidikan-hobi" class="block text-espresso hover:text-burgundy py-1.5 border-b border-antique-gold/15 mobile-link">Pendidikan & Hobi</a>
+            <a href="#kontak" class="block text-center w-full py-2.5 mt-2 rounded-md bg-burgundy text-parchment-light font-serif text-base mobile-link">Hubungi Saya</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION BERGAYA EDITORIAL VINTAGE -->
+    <section id="tentang" class="pt-32 pb-20 lg:pt-40 lg:pb-28 relative">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="double-frame bg-parchment-light/90 p-6 sm:p-10 lg:p-14 rounded-xl shadow-xl">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+                    
+                    <!-- Kolom Foto Profil Klasik -->
+                    <div class="lg:col-span-5 flex flex-col items-center">
+                        <div class="vintage-photo-wrapper relative w-64 sm:w-72 md:w-80">
+                            <!-- Sudut Ornamen Klasik -->
+                            <div class="absolute -top-2.5 -left-2.5 w-7 h-7 border-t-2 border-l-2 border-burgundy z-10 pointer-events-none"></div>
+                            <div class="absolute -top-2.5 -right-2.5 w-7 h-7 border-t-2 border-r-2 border-burgundy z-10 pointer-events-none"></div>
+                            <div class="absolute -bottom-2.5 -left-2.5 w-7 h-7 border-b-2 border-l-2 border-burgundy z-10 pointer-events-none"></div>
+                            <div class="absolute -bottom-2.5 -right-2.5 w-7 h-7 border-b-2 border-r-2 border-burgundy z-10 pointer-events-none"></div>
+
+                            <!-- Bingkai Foto Utama -->
+                            <div class="relative aspect-[3/4] w-full overflow-hidden rounded-md border-2 border-antique-gold bg-parchment-dark shadow-lg">
+                                <!-- 
+                                    PENTING UNTUK GITHUB PAGES:
+                                    File gambar menggunakan nama "foto saya.jpg" sesuai file yang dilampirkan.
+                                    Pastikan file "foto saya.jpg" berada di folder yang sama dengan index.html saat upload ke GitHub.
+                                -->
+                                <img id="profile-image" 
+                                     src="foto saya.jpg" 
+                                     onerror="this.onerror=null; this.src='https://placehold.co/600x800/E8DEC8/2C1E16?text=Deswita+Ayudya+Pitaloka';" 
+                                     alt="Deswita Ayudya Pitaloka sedang membaca buku" 
+                                     class="vintage-photo w-full h-full object-cover object-center">
+                            </div>
+
+                            <!-- Label Keterangan Foto Ala Arsip Klasik -->
+                            <div class="mt-3 text-center">
+                                <p class="font-serif italic text-sm text-espresso-muted">
+                                    &ldquo;Menimba ilmu dari lembar buku, meracik rasa di atas meja saji.&rdquo;
+                                </p>
+                            </div>
+
+                            <!-- Kontrol Pratinjau Foto (Tidak ikut tercetak saat Print) -->
+                            <div class="mt-3 text-center no-print">
+                                <label for="photo-upload" class="cursor-pointer inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded border border-antique-gold/60 bg-parchment hover:bg-parchment-dark text-xs text-espresso-light transition-colors">
+                                    <i class="fa-solid fa-image text-burgundy"></i>
+                                    <span>Pratinjau Foto Lain</span>
+                                </label>
+                                <input type="file" id="photo-upload" accept="image/*" class="hidden">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Kolom Biodata & Narasi Editorial -->
+                    <div class="lg:col-span-7 text-center lg:text-left space-y-5">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded border border-antique-gold/60 bg-parchment text-burgundy text-xs font-serif uppercase tracking-[0.2em] font-semibold">
+                            <i class="fa-solid fa-utensils text-[10px]"></i>
+                            <span>Aspiring 5-Star Chef &bull; Culinary Arts</span>
+                        </div>
+
+                        <h1 class="font-display text-3xl sm:text-5xl lg:text-[3.25rem] font-bold text-espresso leading-tight">
+                            Deswita Ayudya <br>
+                            <span class="text-burgundy italic font-normal">Pitaloka</span>
+                        </h1>
+
+                        <div class="flex items-center justify-center lg:justify-start gap-3 text-antique-bronze font-serif italic text-lg">
+                            <span>Calon Chef Profesional</span>
+                            <span>&bull;</span>
+                            <span>Pecinta Literatur & Buku</span>
+                        </div>
+
+                        <p class="text-espresso-light text-sm sm:text-base leading-relaxed font-body">
+                            Selamat datang di arsip portofolio pribadi saya. Berasal dari Singojuruh, Banyuwangi, saya memiliki ketertarikan mendalam pada dunia <strong class="text-espresso font-semibold">kuliner</strong> serta kegemaran <strong class="text-espresso font-semibold">membaca buku</strong> sebagai jendela inspirasi. Dengan ketekunan, disiplin, dan rasa ingin tahu yang tinggi, saya melangkah menuju cita-cita menjadi seorang <strong class="text-burgundy font-semibold">Chef Bintang 5</strong>.
+                        </p>
+
+                        <!-- Ringkasan Identitas Cepat -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-left text-xs sm:text-sm border-y border-antique-gold/30 py-4">
+                            <div class="flex items-start gap-2.5">
+                                <i class="fa-solid fa-location-dot text-burgundy mt-1"></i>
+                                <div>
+                                    <span class="text-espresso-muted block text-xs">Domisili:</span>
+                                    <span class="text-espresso font-medium">Singojuruh, Kab. Banyuwangi</span>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-2.5">
+                                <i class="fa-solid fa-graduation-cap text-burgundy mt-1"></i>
+                                <div>
+                                    <span class="text-espresso-muted block text-xs">Pendidikan:</span>
+                                    <span class="text-espresso font-medium">SMPN 1 Singojuruh</span>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-2.5">
+                                <i class="fa-solid fa-award text-burgundy mt-1"></i>
+                                <div>
+                                    <span class="text-espresso-muted block text-xs">Keahlian & Tujuan:</span>
+                                    <span class="text-espresso font-medium">Kuliner &mdash; Chef Bintang 5</span>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-2.5">
+                                <i class="fa-solid fa-book-open text-burgundy mt-1"></i>
+                                <div>
+                                    <span class="text-espresso-muted block text-xs">Hobi Utama:</span>
+                                    <span class="text-espresso font-medium">Membaca Buku</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tombol Aksi (CTA) -->
+                        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5 pt-2 no-print">
+                            <a href="#kontak" class="w-full sm:w-auto px-7 py-3 rounded-md bg-burgundy text-parchment-light font-serif text-base tracking-wide hover:bg-burgundy-dark transition-all flex items-center justify-center gap-2 shadow-md">
+                                <i class="fa-regular fa-envelope"></i>
+                                <span>Hubungi Saya</span>
+                            </a>
+                            <button onclick="window.print()" class="w-full sm:w-auto px-7 py-3 rounded-md border border-espresso text-espresso hover:bg-espresso hover:text-parchment-light font-serif text-base tracking-wide transition-all flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-print"></i>
+                                <span>Cetak / Simpan CV (PDF)</span>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CITA-CITA & FILOSOFI CHEF BINTANG 5 -->
+    <section id="visi" class="py-16 sm:py-24 bg-espresso text-parchment-light relative">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+            <div class="double-frame-dark p-8 sm:p-12 rounded-xl text-center space-y-6">
+                <div class="inline-flex items-center gap-1.5 text-antique-light text-sm">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+
+                <h2 class="font-display text-3xl sm:text-4xl font-bold text-parchment-light">
+                    Tujuan Karier & Cita-Cita: <span class="text-antique-light italic font-normal">Chef Bintang 5</span>
+                </h2>
+
+                <div class="ornament-divider">
+                    <i class="fa-solid fa-wheat-awn text-sm"></i>
+                </div>
+
+                <p class="max-w-3xl mx-auto text-parchment/85 text-base sm:text-lg leading-relaxed font-body">
+                    &ldquo;Bagi saya, menjadi seorang <strong class="text-antique-light font-semibold">Chef</strong> bukan sekadar mengolah bahan makanan menjadi hidangan, melainkan merangkai cerita, ketelitian, dan kehangatan dalam setiap sajian. Cita-cita saya untuk menjadi <strong class="text-antique-light font-semibold">Chef Bintang 5</strong> mendorong saya untuk terus belajar standar tata boga terbaik, menghargai warisan kuliner Nusantara, dan menyajikan karya kuliner berkelas dunia.&rdquo;
+                </p>
+
+                <div class="pt-2 font-serif italic text-antique-light text-lg">
+                    &mdash; Deswita Ayudya Pitaloka
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KEAHLIAN KULINER (INTERAKTIF DENGAN FILTER KATEGORI) -->
+    <section id="keahlian" class="py-20 lg:py-28">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <span class="font-serif italic text-burgundy text-lg">Kompetensi & Seni Tata Boga</span>
+                <h2 class="font-display text-3xl sm:text-4xl font-bold text-espresso mt-1">Keahlian Kuliner</h2>
+                <div class="ornament-divider mt-3">
+                    <i class="fa-solid fa-utensils text-xs"></i>
+                </div>
+            </div>
+
+            <!-- Tab Filter Interaktif -->
+            <div class="flex flex-wrap items-center justify-center gap-2.5 mb-10 no-print" id="skill-filters">
+                <button data-filter="all" class="filter-btn active px-5 py-2 rounded-md text-sm font-serif tracking-wide border border-espresso bg-espresso text-parchment-light transition-all">
+                    Semua Keahlian
+                </button>
+                <button data-filter="teknik" class="filter-btn px-5 py-2 rounded-md text-sm font-serif tracking-wide border border-antique-gold/60 bg-parchment-light text-espresso hover:border-burgundy transition-all">
+                    Teknik Memasak
+                </button>
+                <button data-filter="estetika" class="filter-btn px-5 py-2 rounded-md text-sm font-serif tracking-wide border border-antique-gold/60 bg-parchment-light text-espresso hover:border-burgundy transition-all">
+                    Penyajian & Rasa
+                </button>
+                <button data-filter="standar" class="filter-btn px-5 py-2 rounded-md text-sm font-serif tracking-wide border border-antique-gold/60 bg-parchment-light text-espresso hover:border-burgundy transition-all">
+                    Disiplin Dapur
+                </button>
+            </div>
+
+            <!-- Grid Kartu Keahlian -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="skills-grid">
+                <!-- Kartu 1 -->
+                <div class="vintage-card p-6 rounded-xl flex flex-col justify-between skill-item" data-category="teknik">
+                    <div>
+                        <div class="w-12 h-12 rounded-full border border-antique-gold bg-parchment flex items-center justify-center text-burgundy text-lg mb-5">
+                            <i class="fa-solid fa-fire-burner"></i>
+                        </div>
+                        <span class="text-[11px] uppercase tracking-widest text-antique-bronze font-semibold">Fondasi Utama</span>
+                        <h3 class="font-display text-xl font-bold text-espresso mt-1 mb-3">Seni Memasak & Pengolahan Bumbu</h3>
+                        <p class="text-espresso-light text-sm leading-relaxed">
+                            Memahami keseimbangan rasa rempah dan teknik dasar memasak untuk menciptakan hidangan yang kaya cita rasa dan autentik.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-antique-gold/25 flex items-center justify-between text-xs text-espresso-muted">
+                        <span>Bidang: Kuliner</span>
+                        <span class="font-serif italic text-burgundy font-semibold">Inti</span>
+                    </div>
+                </div>
+
+                <!-- Kartu 2 -->
+                <div class="vintage-card p-6 rounded-xl flex flex-col justify-between skill-item" data-category="estetika">
+                    <div>
+                        <div class="w-12 h-12 rounded-full border border-antique-gold bg-parchment flex items-center justify-center text-burgundy text-lg mb-5">
+                            <i class="fa-solid fa-plate-wheat"></i>
+                        </div>
+                        <span class="text-[11px] uppercase tracking-widest text-antique-bronze font-semibold">Presentasi</span>
+                        <h3 class="font-display text-xl font-bold text-espresso mt-1 mb-3">Plating & Estetika Hidangan</h3>
+                        <p class="text-espresso-light text-sm leading-relaxed">
+                            Menata sajian dengan komposisi warna, tekstur, dan kerapian tinggi layaknya standar penyajian restoran hotel bintang 5.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-antique-gold/25 flex items-center justify-between text-xs text-espresso-muted">
+                        <span>Bidang: Fine Dining</span>
+                        <span class="font-serif italic text-burgundy font-semibold">Kreatif</span>
+                    </div>
+                </div>
+
+                <!-- Kartu 3 -->
+                <div class="vintage-card p-6 rounded-xl flex flex-col justify-between skill-item" data-category="teknik">
+                    <div>
+                        <div class="w-12 h-12 rounded-full border border-antique-gold bg-parchment flex items-center justify-center text-burgundy text-lg mb-5">
+                            <i class="fa-solid fa-book-bookmark"></i>
+                        </div>
+                        <span class="text-[11px] uppercase tracking-widest text-antique-bronze font-semibold">Riset Resep</span>
+                        <h3 class="font-display text-xl font-bold text-espresso mt-1 mb-3">Literasi Resep & Inovasi Menu</h3>
+                        <p class="text-espresso-light text-sm leading-relaxed">
+                            Memadukan hobi membaca buku dengan eksplorasi resep klasik maupun modern untuk memahami sejarah dan karakter tiap bahan pangan.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-antique-gold/25 flex items-center justify-between text-xs text-espresso-muted">
+                        <span>Bidang: Gastronomi</span>
+                        <span class="font-serif italic text-burgundy font-semibold">Eksploratif</span>
+                    </div>
+                </div>
+
+                <!-- Kartu 4 -->
+                <div class="vintage-card p-6 rounded-xl flex flex-col justify-between skill-item" data-category="standar">
+                    <div>
+                        <div class="w-12 h-12 rounded-full border border-antique-gold bg-parchment flex items-center justify-center text-burgundy text-lg mb-5">
+                            <i class="fa-solid fa-hand-sparkles"></i>
+                        </div>
+                        <span class="text-[11px] uppercase tracking-widest text-antique-bronze font-semibold">Standar Bintang 5</span>
+                        <h3 class="font-display text-xl font-bold text-espresso mt-1 mb-3">Higienitas & Kerapian Dapur</h3>
+                        <p class="text-espresso-light text-sm leading-relaxed">
+                            Menjunjung tinggi kebersihan bahan, peralatan masak, dan keteraturan area kerja sebagai kunci utama dapur profesional.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-antique-gold/25 flex items-center justify-between text-xs text-espresso-muted">
+                        <span>Bidang: Sanitasi</span>
+                        <span class="font-serif italic text-burgundy font-semibold">Disiplin</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RIWAYAT PENDIDIKAN & HOBI MEMBACA BUKU -->
+    <section id="pendidikan-hobi" class="py-20 bg-parchment-dark/45 border-y border-antique-gold/30">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
+                
+                <!-- Kolom Riwayat Pendidikan -->
+                <div class="lg:col-span-6 flex flex-col">
+                    <div class="mb-6">
+                        <span class="font-serif italic text-burgundy text-lg">Catatan Akademik</span>
+                        <h2 class="font-display text-3xl font-bold text-espresso mt-1">Riwayat Pendidikan</h2>
+                    </div>
+
+                    <div class="vintage-card p-7 sm:p-9 rounded-xl flex-1 flex flex-col justify-between relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-24 h-24 bg-antique-gold/10 rounded-bl-full pointer-events-none"></div>
+                        
+                        <div>
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-parchment border border-antique-gold/50 text-xs font-serif font-semibold text-espresso-light mb-4">
+                                <i class="fa-solid fa-school text-burgundy"></i>
+                                <span>Pendidikan Menengah Pertama</span>
+                            </div>
+
+                            <h3 class="font-display text-2xl sm:text-3xl font-bold text-espresso">SMPN 1 Singojuruh</h3>
+                            <p class="font-serif italic text-antique-bronze text-base mt-1">
+                                Kecamatan Singojuruh, Kabupaten Banyuwangi
+                            </p>
+
+                            <p class="text-espresso-light text-sm sm:text-base leading-relaxed mt-4">
+                                Menempuh pendidikan formal di SMPN 1 Singojuruh sebagai fondasi pembentukan karakter, kedisiplinan waktu, tanggung jawab, dan semangat belajar yang terus saya terapkan dalam mengejar cita-cita di dunia kuliner.
+                            </p>
+                        </div>
+
+                        <div class="mt-8 pt-4 border-t border-antique-gold/25 flex items-center justify-between text-xs text-espresso-muted">
+                            <span>Status: Lulus / Alumni</span>
+                            <span class="text-burgundy font-medium"><i class="fa-solid fa-award mr-1"></i> Banyuwangi, Jawa Timur</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kolom Hobi: Membaca Buku (Interaktif dengan Kutipan Literatur) -->
+                <div class="lg:col-span-6 flex flex-col">
+                    <div class="mb-6">
+                        <span class="font-serif italic text-burgundy text-lg">Kegemaran & Inspirasi</span>
+                        <h2 class="font-display text-3xl font-bold text-espresso mt-1">Hobi: Membaca Buku</h2>
+                    </div>
+
+                    <div class="vintage-card p-7 sm:p-9 rounded-xl flex-1 flex flex-col justify-between relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-24 h-24 bg-burgundy/5 rounded-bl-full pointer-events-none"></div>
+
+                        <div>
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-parchment border border-antique-gold/50 text-xs font-serif font-semibold text-burgundy mb-4">
+                                <i class="fa-solid fa-book-open-reader"></i>
+                                <span>Literatur, Wawasan & Resep</span>
+                            </div>
+
+                            <h3 class="font-display text-2xl sm:text-3xl font-bold text-espresso">Jendela Pengetahuan & Kreativitas</h3>
+
+                            <p class="text-espresso-light text-sm sm:text-base leading-relaxed mt-4">
+                                Membaca buku adalah cara saya memperluas sudut pandang, melatih ketelitian, dan menggali inspirasi—mulai dari buku pengetahuan umum, kisah inspiratif, hingga literatur seputar bahan pangan dan seni memasak.
+                            </p>
+
+                            <!-- Kotak Kutipan Interaktif -->
+                            <div class="mt-6 p-5 rounded-lg bg-parchment border-l-4 border-burgundy">
+                                <p id="book-quote-text" class="font-serif italic text-base sm:text-lg text-espresso leading-relaxed">
+                                    &ldquo;Buku adalah resep kehidupan; semakin banyak halaman yang kita baca, semakin kaya rasa kebijaksanaan yang kita sajikan.&rdquo;
+                                </p>
+                                <p id="book-quote-author" class="text-xs text-antique-bronze font-semibold mt-2 uppercase tracking-wider">
+                                    &mdash; Catatan Hobi Deswita
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 pt-4 border-t border-antique-gold/25 flex items-center justify-between no-print">
+                            <span class="text-xs text-espresso-muted">Klik untuk kutipan inspirasi lainnya</span>
+                            <button id="next-quote-btn" class="px-4 py-1.5 rounded border border-burgundy text-burgundy hover:bg-burgundy hover:text-parchment-light text-xs font-serif transition-colors flex items-center gap-1.5">
+                                <i class="fa-solid fa-rotate"></i>
+                                <span>Kutipan Berikutnya</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- KONTAK & BUKU TAMU INTERAKTIF -->
+    <section id="kontak" class="py-20 lg:py-28">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+            <div class="text-center max-w-2xl mx-auto mb-14">
+                <span class="font-serif italic text-burgundy text-lg">Korespondensi Pribadi</span>
+                <h2 class="font-display text-3xl sm:text-4xl font-bold text-espresso mt-1">Hubungi & Kirim Pesan</h2>
+                <div class="ornament-divider mt-3">
+                    <i class="fa-solid fa-feather text-xs"></i>
+                </div>
+                <p class="text-espresso-light text-sm sm:text-base mt-3">
+                    Silakan hubungi saya melalui telepon, WhatsApp, surat elektronik, atau tinggalkan pesan langsung melalui formulir di bawah ini.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                
+                <!-- Kolom Kiri: Kartu Detail Kontak -->
+                <div class="lg:col-span-5 space-y-5">
+                    <!-- Alamat Lengkap -->
+                    <div class="vintage-card p-6 rounded-xl flex items-start gap-4">
+                        <div class="w-11 h-11 rounded-full border border-antique-gold bg-parchment flex-shrink-0 flex items-center justify-center text-burgundy">
+                            <i class="fa-solid fa-map-location-dot"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-display text-lg font-bold text-espresso">Alamat Lengkap</h3>
+                            <p class="text-espresso-light text-sm leading-relaxed mt-1">
+                                Dusun Bangunrejo, Desa Alasmalang, Kecamatan Singojuruh, Kabupaten Banyuwangi
+                            </p>
+                            <a href="https://www.google.com/maps/search/?api=1&query=Dusun+Bangunrejo+Desa+Alasmalang+Singojuruh+Banyuwangi" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-serif font-semibold text-burgundy hover:underline mt-2.5 no-print">
+                                <span>Buka Peta Lokasi</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Nomor Telepon / WhatsApp -->
+                    <div class="vintage-card p-6 rounded-xl flex items-start gap-4">
+                        <div class="w-11 h-11 rounded-full border border-antique-gold bg-parchment flex-shrink-0 flex items-center justify-center text-burgundy">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div class="w-full">
+                            <h3 class="font-display text-lg font-bold text-espresso">Telepon & WhatsApp</h3>
+                            <p class="text-espresso font-medium text-base mt-1">083890711382</p>
+                            <div class="flex flex-wrap items-center gap-2.5 mt-3 no-print">
+                                <a href="https://wa.me/6283890711382?text=Halo%20Deswita%20Ayudya%20Pitaloka,%20saya%20melihat%20website%20CV%20Anda." target="_blank" rel="noopener noreferrer" class="px-3.5 py-1.5 rounded bg-burgundy text-parchment-light text-xs font-serif hover:bg-burgundy-dark transition-colors">
+                                    <i class="fa-brands fa-whatsapp mr-1"></i> Chat WhatsApp
+                                </a>
+                                <button onclick="copyText('083890711382', 'Nomor telepon berhasil disalin!')" class="px-3.5 py-1.5 rounded border border-antique-gold/60 bg-parchment text-espresso text-xs font-serif hover:border-burgundy transition-colors">
+                                    <i class="fa-regular fa-copy mr-1"></i> Salin
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="vintage-card p-6 rounded-xl flex items-start gap-4">
+                        <div class="w-11 h-11 rounded-full border border-antique-gold bg-parchment flex-shrink-0 flex items-center justify-center text-burgundy">
+                            <i class="fa-regular fa-envelope"></i>
+                        </div>
+                        <div class="w-full">
+                            <h3 class="font-display text-lg font-bold text-espresso">Surat Elektronik (Email)</h3>
+                            <p class="text-espresso font-medium text-xs sm:text-sm mt-1 break-all">deswitaayudyapitaloka@gmail.com</p>
+                            <div class="flex flex-wrap items-center gap-2.5 mt-3 no-print">
+                                <a href="mailto:deswitaayudyapitaloka@gmail.com" class="px-3.5 py-1.5 rounded bg-espresso text-parchment-light text-xs font-serif hover:bg-espresso-light transition-colors">
+                                    <i class="fa-regular fa-paper-plane mr-1"></i> Kirim Email
+                                </a>
+                                <button onclick="copyText('deswitaayudyapitaloka@gmail.com', 'Alamat email berhasil disalin!')" class="px-3.5 py-1.5 rounded border border-antique-gold/60 bg-parchment text-espresso text-xs font-serif hover:border-burgundy transition-colors">
+                                    <i class="fa-regular fa-copy mr-1"></i> Salin
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kolom Kanan: Formulir Pesan Cepat (Terhubung langsung ke WhatsApp) -->
+                <div class="lg:col-span-7 no-print">
+                    <div class="double-frame bg-parchment-light p-7 sm:p-10 rounded-xl">
+                        <h3 class="font-display text-2xl font-bold text-espresso">Kirim Pesan Langsung</h3>
+                        <p class="font-serif italic text-espresso-muted text-sm mt-1 mb-6">
+                            Tulis pesan Anda di bawah ini untuk langsung terhubung ke WhatsApp Deswita.
+                        </p>
+
+                        <form id="contact-form" class="space-y-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="sender-name" class="block text-xs font-serif uppercase tracking-wider text-espresso-light font-semibold mb-1.5">Nama Anda</label>
+                                    <input type="text" id="sender-name" required placeholder="Masukkan nama lengkap..." class="w-full px-4 py-2.5 rounded-md bg-parchment border border-antique-gold/60 text-espresso text-sm focus:outline-none focus:border-burgundy">
+                                </div>
+                                <div>
+                                    <label for="sender-subject" class="block text-xs font-serif uppercase tracking-wider text-espresso-light font-semibold mb-1.5">Perihal</label>
+                                    <select id="sender-subject" class="w-full px-4 py-2.5 rounded-md bg-parchment border border-antique-gold/60 text-espresso text-sm focus:outline-none focus:border-burgundy">
+                                        <option value="Peluang Karier / Magang Kuliner">Peluang Karier / Magang Kuliner</option>
+                                        <option value="Kolaborasi Resep & Memasak">Kolaborasi Resep & Memasak</option>
+                                        <option value="Rekomendasi Buku">Rekomendasi Buku</option>
+                                        <option value="Sapaan & Silaturahmi">Sapaan & Silaturahmi</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="sender-message" class="block text-xs font-serif uppercase tracking-wider text-espresso-light font-semibold mb-1.5">Isi Pesan</label>
+                                <textarea id="sender-message" rows="4" required placeholder="Tuliskan pesan atau tawaran kerja sama Anda di sini..." class="w-full px-4 py-2.5 rounded-md bg-parchment border border-antique-gold/60 text-espresso text-sm focus:outline-none focus:border-burgundy"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full py-3.5 px-6 rounded-md bg-burgundy text-parchment-light font-serif text-base tracking-wide hover:bg-burgundy-dark transition-all flex items-center justify-center gap-2 shadow-md">
+                                <i class="fa-brands fa-whatsapp text-lg"></i>
+                                <span>Kirim Pesan via WhatsApp</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER VINTAGE -->
+    <footer class="bg-espresso text-parchment/80 py-12 border-t-4 border-antique-gold text-center">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-3">
+            <div class="w-10 h-10 rounded-full border border-antique-light/60 flex items-center justify-center mx-auto mb-3 text-antique-light font-display font-bold">
+                DA
+            </div>
+            <p class="font-display text-2xl text-parchment-light">Deswita Ayudya Pitaloka</p>
+            <p class="font-serif italic text-antique-light text-sm">
+                Keahlian Kuliner &bull; Cita-Cita Chef Bintang 5 &bull; Hobi Membaca Buku
+            </p>
+            <p class="text-xs text-parchment/55 pt-4">
+                &copy; <span id="year"></span> Deswita Ayudya Pitaloka &mdash; Singojuruh, Banyuwangi.
+            </p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT INTERAKTIF -->
+    <script>
+        // 1. Set Tahun Otomatis
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // 2. Toggle Navigasi Mobile
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // 3. Fungsi Salin Teks + Toast Notifikasi Vintage
+        function copyText(text, message) {
+            const tempInput = document.createElement('input');
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            showToast(message);
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            toastMsg.textContent = message;
+
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 3000);
+        }
+
+        // 4. Pratinjau Foto Tambahan (Jika pengguna ingin mencoba ganti foto di browser)
+        const photoUpload = document.getElementById('photo-upload');
+        const profileImage = document.getElementById('profile-image');
+
+        photoUpload.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    profileImage.src = e.target.result;
+                    showToast('Pratinjau foto berhasil diperbarui!');
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // 5. Filter Interaktif Kartu Keahlian Kuliner
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const skillItems = document.querySelectorAll('.skill-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Reset style tombol aktif
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-espresso', 'text-parchment-light', 'border-espresso');
+                    b.classList.add('bg-parchment-light', 'text-espresso', 'border-antique-gold/60');
+                });
+                // Set style tombol yang diklik
+                btn.classList.remove('bg-parchment-light', 'text-espresso', 'border-antique-gold/60');
+                btn.classList.add('bg-espresso', 'text-parchment-light', 'border-espresso');
+
+                const filterValue = btn.getAttribute('data-filter');
+
+                skillItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.style.display = 'flex';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // 6. Kutipan Buku & Kuliner Interaktif (Hobi Membaca Buku)
+        const quotes = [
+            {
+                text: "“Buku adalah resep kehidupan; semakin banyak halaman yang kita baca, semakin kaya rasa kebijaksanaan yang kita sajikan.”",
+                author: "— Catatan Hobi Deswita"
+            },
+            {
+                text: "“Memasak adalah seni yang melibatkan seluruh indra, dan membaca adalah cara terbaik memperkaya imajinasi di baliknya.”",
+                author: "— Filosofi Kuliner & Literatur"
+            },
+            {
+                text: "“Setiap chef hebat selalu menjadi pembelajar seumur hidup—baik di depan tungku dapur maupun di antara rak buku.”",
+                author: "— Menuju Chef Bintang 5"
+            },
+            {
+                text: "“Dari lembar buku lahir wawasan, dari ketulusan tangan lahir hidangan yang berkesan.”",
+                author: "— Deswita Ayudya Pitaloka"
+            }
+        ];
+
+        let currentQuoteIndex = 0;
+        const nextQuoteBtn = document.getElementById('next-quote-btn');
+        const quoteTextEl = document.getElementById('book-quote-text');
+        const quoteAuthorEl = document.getElementById('book-quote-author');
+
+        nextQuoteBtn.addEventListener('click', () => {
+            currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
+            quoteTextEl.textContent = quotes[currentQuoteIndex].text;
+            quoteAuthorEl.textContent = quotes[currentQuoteIndex].author;
+        });
+
+        // 7. Formulir Pesan Langsung ke WhatsApp
+        const contactForm = document.getElementById('contact-form');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('sender-name').value.trim();
+            const subject = document.getElementById('sender-subject').value;
+            const message = document.getElementById('sender-message').value.trim();
+
+            const waText = `Halo Deswita Ayudya Pitaloka,%0A%0ASaya *${encodeURIComponent(name)}*%0APerihal: *${encodeURIComponent(subject)}*%0A%0APesan:%0A${encodeURIComponent(message)}`;
+            const waUrl = `https://wa.me/6283890711382?text=${waText}`;
+
+            showToast('Membuka WhatsApp untuk mengirim pesan...');
+            window.open(waUrl, '_blank', 'noopener,noreferrer');
+        });
+
+        // 8. Animasi Scroll Reveal Halus
+        const observerOptions = {
+            threshold: 0.12
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
